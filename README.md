@@ -24,5 +24,5 @@ Entorno de Desarrollo: IntelliJ IDEA.\
 Version de JDK: temurin 21+
 
 Integrantes
-Calles y Carranza Santiago
+Calles y Carranza Santiago\
 Reyes Casimiro Stanle
