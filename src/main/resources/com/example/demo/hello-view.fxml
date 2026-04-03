@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="550.0" prefWidth="419.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
+<VBox alignment="CENTER" prefHeight="550.0" prefWidth="509.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.appController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -14,24 +14,26 @@
           <Label fx:id="welcomeText" prefHeight="17.0" prefWidth="240.0" text="Consultorio medico - Registro de pacientes" BorderPane.alignment="CENTER" />
       </top>
       <center>
-         <TableView prefHeight="373.0" prefWidth="383.0" BorderPane.alignment="CENTER">
+         <TableView fx:id="tableView" prefHeight="373.0" prefWidth="428.0" BorderPane.alignment="CENTER">
            <columns>
-             <TableColumn prefWidth="75.0" text="CURP" />
-             <TableColumn prefWidth="75.0" text="Nombre" />
-               <TableColumn prefWidth="75.0" text="Edad" />
-               <TableColumn prefWidth="75.0" text="Num. Telefonico" />
-               <TableColumn prefWidth="75.0" text="Estatus (A/I)" />
+             <TableColumn fx:id="viewCurp" prefWidth="75.0" text="CURP" />
+             <TableColumn fx:id="viewNombre" prefWidth="75.0" text="Nombre" />
+               <TableColumn fx:id="viewEdad" prefWidth="75.0" text="Edad" />
+               <TableColumn fx:id="viewTelefono" prefWidth="75.0" text="Num. Telefonico" />
+               <TableColumn fx:id="viewAlergias" prefWidth="75.0" text="Alergias" />
+               <TableColumn fx:id="viewEstatus" prefWidth="75.0" text="Estatus (A/I)" />
            </columns>
          </TableView>
       </center></BorderPane>
    <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
       <children>
          <Button mnemonicParsing="false" text="Nuevo" />
-         <Button mnemonicParsing="false" text="Actualizar" />
-         <Button mnemonicParsing="false" text="Eliminar" />
-         <Button mnemonicParsing="false" text="Cambiar Estatus" />
+         <Button mnemonicParsing="false" onAction="#onReload" text="Actualizar" />
+         <Button mnemonicParsing="false" onAction="#onDelete" text="Eliminar" />
+         <Button mnemonicParsing="false" onAction="#onStatus" text="Cambiar Estatus" />
       </children>
       <padding>
          <Insets left="35.0" />
       </padding></HBox>
+   <Label fx:id="lblAlert" />
 </VBox>

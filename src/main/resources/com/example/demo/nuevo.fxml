@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.appController">
    <children>
       <GridPane hgap="15.0" minHeight="10.0" minWidth="10.0" prefHeight="154.0" prefWidth="600.0">
         <columnConstraints>
@@ -17,17 +17,18 @@
           <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="CURP" />
             <Label text="Nombre completo" GridPane.rowIndex="1" />
             <Label text="Edad" GridPane.rowIndex="2" />
             <Label text="Numero de telefono" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField prefHeight="25.0" prefWidth="409.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txtCurp" GridPane.columnIndex="1" />
+            <TextField fx:id="txtNombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtEdad" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtTelefono" prefHeight="25.0" prefWidth="409.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtAlergia" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="Alergias" GridPane.rowIndex="4" />
          </children>
          <padding>
@@ -42,5 +43,6 @@
          <padding>
             <Insets left="400.0" top="224.0" />
          </padding></HBox>
+      <Label fx:id="lblAlert" />
    </children>
 </VBox>
