@@ -1,6 +1,6 @@
 package com.example.demo.Service;
 
-import com.example.demo.Repository.Paciente;
+import com.example.demo.Array.Paciente;
 import com.example.demo.Repository.FileRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,7 +29,9 @@ public class PersonService {
     //Botones
     // Agregar nuevo paciente
     public void addPaciente(Paciente paciente) throws IOException {
+        //Este codigo ya lo hice, para que solamente lo conectes
         if (paciente.getCurp().equalsIgnoreCase(paciente.getCurp())) {
+            //Recuerda deja el ilegal argument con solamente la exepcion o este mensaje no se va a mostrar
             throw new IllegalArgumentException("El CURP ya está registrado.");
         }else {
             pacientes.add(paciente);
@@ -39,22 +41,18 @@ public class PersonService {
 
     // Eliminar un pasciente
     public void eliminarPaciente(Paciente paciente) throws IOException {
-        if (paciente != null) {
             pacientes.remove(paciente);
             repository.saveAll(pacientes);
-        }
     }
 
     //Cambiar el estatus de un paciente
     public void cambiarEstatus(Paciente paciente) throws IOException {
-        if (paciente != null) {
-            if (paciente.getEstatus().equals("ACTIVO")) {
-                paciente.setEstatus("INACTIVO");
-            }
-            else {
-                paciente.setEstatus("ACTIVO");
-            }
-            repository.saveAll(pacientes);
+        if (paciente.getEstatus().equals("ACTIVO")) {
+            paciente.setEstatus("INACTIVO");
         }
+        else {
+            paciente.setEstatus("ACTIVO");
+        }
+        repository.saveAll(pacientes);
     }
 }

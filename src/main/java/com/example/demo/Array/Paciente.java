@@ -1,4 +1,4 @@
-package com.example.demo.Repository;
+package com.example.demo.Array;
 
 public class Paciente {
     private String curp;
@@ -8,6 +8,7 @@ public class Paciente {
     private String alergias;
     private String estatus;
 
+    //Todos los datos los puse como String exepto la edad por si te da problemas
     public Paciente(String curp, String nombre, int edad, String telefono, String alergias, String estatus) {
         this.curp = curp;
         this.nombre = nombre;

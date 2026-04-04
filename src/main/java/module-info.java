@@ -11,4 +11,5 @@ module com.example.demo {
     opens com.example.demo.Service to javafx.fxml;
 
     exports com.example.demo;
+    opens com.example.demo.Array to javafx.base, javafx.fxml;
 }
