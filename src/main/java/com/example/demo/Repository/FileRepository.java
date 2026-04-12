@@ -30,13 +30,7 @@ public class FileRepository {
             String[] parts = line.split(",", -1);
             if (parts.length >= 6) {
                 Paciente paciente = new Paciente(
-                        parts[0].trim(), // curp
-                        parts[1].trim(), // nombre
-                        Integer.parseInt(parts[2].trim()), // edad (La estoy convirtiendo a int porque asi esta el dato en el arreglo)
-                        parts[3].trim(), // telefono
-                        parts[4].trim(), // alergias
-                        parts[5].trim()  // estatus
-                );
+                        parts[0].trim(),parts[1].trim(),Integer.parseInt(parts[2].trim()),parts[3].trim(),parts[4].trim(),parts[5].trim());
                 lista.add(paciente);
             }
         }

@@ -27,7 +27,7 @@
       </center></BorderPane>
    <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
       <children>
-         <Button mnemonicParsing="false" text="Nuevo" />
+         <Button mnemonicParsing="false" onAction="#onNew" text="Nuevo" />
          <Button mnemonicParsing="false" onAction="#onReload" text="Actualizar" />
          <Button mnemonicParsing="false" onAction="#onDelete" text="Eliminar" />
          <Button mnemonicParsing="false" onAction="#onStatus" text="Cambiar Estatus" />

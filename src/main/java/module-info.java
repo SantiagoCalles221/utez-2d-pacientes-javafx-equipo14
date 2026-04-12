@@ -12,4 +12,5 @@ module com.example.demo {
 
     exports com.example.demo;
     opens com.example.demo.Array to javafx.base, javafx.fxml;
+    exports com.example.demo.controller;
 }

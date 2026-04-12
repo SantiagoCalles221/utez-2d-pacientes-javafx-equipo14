@@ -14,6 +14,11 @@ public class PersonService {
     //Inicio la lista que esta conectada (La que esta en Data y se llama person.csv)
     public PersonService() {
         this.pacientes = FXCollections.observableArrayList();
+        try {
+            loadData(); //Carga lo que ya existe en el csv al iniciar
+        } catch (IOException e) {
+            System.out.println("Error al cargar datos iniciales");
+        }
     }
 
     //Cargo datos desde el archivo al iniciar
@@ -28,13 +33,19 @@ public class PersonService {
 
     //Botones
     // Agregar nuevo paciente
-    public void addPaciente(Paciente paciente) throws IOException {
-        //Este codigo ya lo hice, para que solamente lo conectes
-        if (paciente.getCurp().equalsIgnoreCase(paciente.getCurp())) {
-            //Recuerda deja el ilegal argument con solamente la exepcion o este mensaje no se va a mostrar
+    public void addPaciente(Paciente nuevo) throws IOException {
+        // 1. Buscamos en la lista 'pacientes' si ya existe ese CURP
+        boolean exist = false;
+        for (Paciente paciente : pacientes) {
+            if (paciente.getCurp().equalsIgnoreCase(nuevo.getCurp())) {
+                exist = true;
+                break;
+            }
+        }
+        if (exist) {
             throw new IllegalArgumentException("El CURP ya está registrado.");
-        }else {
-            pacientes.add(paciente);
+        } else {
+            pacientes.add(nuevo);
             repository.saveAll(pacientes);
         }
     }
@@ -47,11 +58,11 @@ public class PersonService {
 
     //Cambiar el estatus de un paciente
     public void cambiarEstatus(Paciente paciente) throws IOException {
-        if (paciente.getEstatus().equals("ACTIVO")) {
-            paciente.setEstatus("INACTIVO");
+        if (paciente.getEstatus().equals("Activo")) {
+            paciente.setEstatus("Inactivo");
         }
         else {
-            paciente.setEstatus("ACTIVO");
+            paciente.setEstatus("Activo");
         }
         repository.saveAll(pacientes);
     }

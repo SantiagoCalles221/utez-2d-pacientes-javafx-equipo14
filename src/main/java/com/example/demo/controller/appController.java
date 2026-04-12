@@ -114,4 +114,9 @@ public class appController {
             lblAlert.setStyle("-fx-text-fill: red");
         }
     }
+    @FXML
+    private void onNew(){
+        //Aqui mete la logica para cambiar de pantalla
+        //Todo ya esta conectado, solamnete falta la logica
+    }
 }
