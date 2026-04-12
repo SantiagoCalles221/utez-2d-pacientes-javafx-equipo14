@@ -66,4 +66,30 @@ public class PersonService {
         }
         repository.saveAll(pacientes);
     }
+    // Cuenta todos los pacientes de la lista
+    public int contarTotales() {
+        return pacientes.size();
+    }
+
+    // Cunta los pacientes Activos
+    public int contarActivos() {
+        int contador = 0;
+        for (Paciente paciente : pacientes) {
+            if (paciente.getEstatus().equalsIgnoreCase("Activo")) {
+                contador++;
+            }
+        }
+        return contador;
+    }
+
+    // Cunta los pacientes Inactivos
+    public int contarInactivos() {
+        int contador = 0;
+        for (Paciente paciente : pacientes) {
+            if (paciente.getEstatus().equalsIgnoreCase("Inactivo")) {
+                contador++;
+            }
+        }
+        return contador;
+    }
 }

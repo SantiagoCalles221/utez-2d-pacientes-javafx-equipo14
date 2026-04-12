@@ -15,6 +15,9 @@ public class appController {
     //Este controlador solamente sirve para hello-view.fxml
     //Tendremos que crear un controlador para el otro archivo
     @FXML private Label lblAlert;
+    @FXML private Label lblActivos;
+    @FXML private Label lblInactivos;
+    @FXML private Label lblTotal;
     @FXML private TableView<Paciente> tableView;
     @FXML private TableColumn<Paciente, String> viewCurp;
     @FXML private TableColumn<Paciente, String> viewNombre;
@@ -42,6 +45,7 @@ public class appController {
     private void cargarDatos() {
         //Simples mensajes de si todo esta bien o exploto
         try {
+            contadorActivos();
             service.loadData();
             tableView.setItems(service.getPacientes());
             lblAlert.setText("Datos cargados correctamente");
@@ -55,6 +59,16 @@ public class appController {
             lblAlert.setText("Hay una edad que no es Numerica");
             lblAlert.setStyle("-fx-text-fill: red");
         }
+    }
+
+    private void contadorActivos(){
+        int total = service.contarTotales();
+        int activos = service.contarActivos();
+        int inactivos = service.contarInactivos();
+
+        lblTotal.setText("Total: " + total);
+        lblActivos.setText("Activos: " + activos);
+        lblInactivos.setText("Inactivos: " + inactivos);
     }
 
     //Botones (Creo que los nombres de los metodos se explican por si mismos)
@@ -105,6 +119,7 @@ public class appController {
                 tableView.refresh();
                 lblAlert.setText("Registro actualizado");
                 lblAlert.setStyle("-fx-text-fill: green");
+                contadorActivos();
             } catch (IOException e) {
                 lblAlert.setText("Error al cargar el registro");
                 lblAlert.setStyle("-fx-text-fill: red");

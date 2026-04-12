@@ -28,12 +28,19 @@
    <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
       <children>
          <Button mnemonicParsing="false" onAction="#onNew" text="Nuevo" />
-         <Button mnemonicParsing="false" onAction="#onReload" text="Actualizar" />
+         <Button mnemonicParsing="false" onAction="#onReload" text="Actualizar registro" />
          <Button mnemonicParsing="false" onAction="#onDelete" text="Eliminar" />
          <Button mnemonicParsing="false" onAction="#onStatus" text="Cambiar Estatus" />
       </children>
       <padding>
          <Insets left="35.0" />
       </padding></HBox>
+   <VBox prefHeight="69.0" prefWidth="469.0">
+      <children>
+         <Label fx:id="lblActivos" />
+         <Label fx:id="lblInactivos" />
+         <Label fx:id="lblTotal" />
+      </children>
+   </VBox>
    <Label fx:id="lblAlert" />
 </VBox>
