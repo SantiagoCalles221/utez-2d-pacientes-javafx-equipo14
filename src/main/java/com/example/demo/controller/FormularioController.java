@@ -32,7 +32,7 @@ public class FormularioController {
 
     //Boton para guardar el registro
     @FXML
-    private void onSave() {
+    private void onSave(ActionEvent event) {
         if (validarDatos()) { // Este metodo comprueba los datos
             Paciente nuevo = new Paciente(txtCurp.getText().trim(), txtNombre.getText().trim(),
                     Integer.parseInt(txtEdad.getText().trim()), txtTelefono.getText().trim(), txtAlergias.getText().trim(),"Activo");
@@ -49,6 +49,18 @@ public class FormularioController {
                 //Esto me lo recomendo el mismo intellij, no se pq pero sin el da error
                 throw new RuntimeException(e);
             }
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demo/hello-view.fxml"));
+            Parent root = loader.load();
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(root));
+            newStage.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Error al cargar la ventana: " + e.getMessage());
         }
     }
     @FXML
