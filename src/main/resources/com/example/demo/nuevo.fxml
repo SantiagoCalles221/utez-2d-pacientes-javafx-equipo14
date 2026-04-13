@@ -37,11 +37,14 @@
       </GridPane>
       <HBox prefHeight="255.0" prefWidth="600.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#clear" text="Cancelar" />
+            <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#handleCancelar" text="Cancelar">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin></Button>
             <Button mnemonicParsing="false" onAction="#onSave" text="Confirmar" />
          </children>
          <padding>
-            <Insets left="400.0" top="224.0" />
+            <Insets left="250.0" top="50.0" />
          </padding></HBox>
       <Label fx:id="lblAlert" />
    </children>

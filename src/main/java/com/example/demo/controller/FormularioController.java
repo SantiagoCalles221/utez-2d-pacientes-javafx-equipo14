@@ -2,12 +2,16 @@ package com.example.demo.controller;
 
 import com.example.demo.Array.Paciente;
 import com.example.demo.Service.PersonService;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
 import java.io.IOException;
+import javafx.fxml.FXMLLoader;
 
 public class FormularioController {
 
@@ -45,6 +49,21 @@ public class FormularioController {
                 //Esto me lo recomendo el mismo intellij, no se pq pero sin el da error
                 throw new RuntimeException(e);
             }
+        }
+    }
+    @FXML
+    private void handleCancelar(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demo/hello-view.fxml"));
+            Parent root = loader.load();
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(root));
+            newStage.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Error al cargar la ventana: " + e.getMessage());
         }
     }
 
@@ -110,4 +129,5 @@ public class FormularioController {
         txtAlergias.setText("");
     }
 }
+
 
