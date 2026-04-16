@@ -24,4 +24,9 @@ public class Paciente {
     public String getEstatus() { return estatus; }
     public void setEstatus(String estatus) { this.estatus = estatus; }
     public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setCurp (String curp) {this.curp = curp.trim();}
+    public void setAlergias (String alergias) {this.alergias = alergias;}
+    public void setEdad (int edad) {this.edad = edad;}
+    public void setTelefono (String telefono) {this.telefono = telefono;}
+
 }

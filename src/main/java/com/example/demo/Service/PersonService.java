@@ -32,22 +32,34 @@ public class PersonService {
     }
 
     //Botones
-    // Agregar nuevo paciente
-    public void addPaciente(Paciente nuevo) throws IOException {
-        // 1. Buscamos en la lista 'pacientes' si ya existe ese CURP
-        boolean exist = false;
-        for (Paciente paciente : pacientes) {
-            if (paciente.getCurp().equalsIgnoreCase(nuevo.getCurp())) {
-                exist = true;
-                break;
+    // Agregar nuevo paciente o actualizarlo
+    public void addPaciente(Paciente nuevo, boolean esEdicion) throws IOException {
+        if (esEdicion) {
+            // LÓGICA PARA ACTUALIZAR
+            for (int i = 0; i < pacientes.size(); i++) {//Buscamos al paciente a actualizar
+                if (pacientes.get(i).getCurp().equalsIgnoreCase(nuevo.getCurp())) {
+                    pacientes.set(i, nuevo);//Cuando lo encontremos lo remplazamos y terminamos de checar
+                    break;
+                }
+            }
+        } else {//Esto es para un registro nuevo
+            boolean exist = false;
+            for (Paciente paciente : pacientes) {
+                if (paciente.getCurp().equalsIgnoreCase(nuevo.getCurp())) {//Busca si el curp ya existe
+                    exist = true;
+                    break;
+                }
+            }
+
+            if (exist) {
+                throw new IllegalArgumentException("El CURP ya está registrado.");
+            } else {
+                pacientes.add(nuevo);
             }
         }
-        if (exist) {
-            throw new IllegalArgumentException("El CURP ya está registrado.");
-        } else {
-            pacientes.add(nuevo);
-            repository.saveAll(pacientes);
-        }
+
+        // Al final, guardamos la lista completa (ya sea con el cambio o el nuevo)
+        repository.saveAll(pacientes);
     }
 
     // Eliminar un pasciente

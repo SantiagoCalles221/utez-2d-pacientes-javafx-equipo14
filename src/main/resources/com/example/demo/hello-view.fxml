@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="550.0" prefWidth="509.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.appController">
+<VBox alignment="CENTER" prefHeight="550.0" prefWidth="634.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.appController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -16,24 +16,38 @@
       <center>
          <TableView fx:id="tableView" prefHeight="373.0" prefWidth="428.0" BorderPane.alignment="CENTER">
            <columns>
-             <TableColumn fx:id="viewCurp" prefWidth="75.0" text="CURP" />
-             <TableColumn fx:id="viewNombre" prefWidth="75.0" text="Nombre" />
-               <TableColumn fx:id="viewEdad" prefWidth="75.0" text="Edad" />
-               <TableColumn fx:id="viewTelefono" prefWidth="75.0" text="Num. Telefonico" />
-               <TableColumn fx:id="viewAlergias" prefWidth="75.0" text="Alergias" />
-               <TableColumn fx:id="viewEstatus" prefWidth="75.0" text="Estatus (A/I)" />
+             <TableColumn fx:id="viewCurp" prefWidth="122.0" text="CURP" />
+             <TableColumn fx:id="viewNombre" prefWidth="92.0" text="Nombre" />
+               <TableColumn fx:id="viewEdad" prefWidth="51.0" text="Edad" />
+               <TableColumn fx:id="viewTelefono" prefWidth="133.0" text="Num. Telefonico" />
+               <TableColumn fx:id="viewAlergias" prefWidth="81.0" text="Alergias" />
+               <TableColumn fx:id="viewEstatus" prefWidth="114.0" text="Estatus (A/I)" />
            </columns>
          </TableView>
       </center></BorderPane>
    <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
       <children>
-         <Button mnemonicParsing="false" onAction="#handleNuevo" text="Nuevo" />
-         <Button mnemonicParsing="false" onAction="#onReload" text="Actualizar registro" />
+         <Button mnemonicParsing="false" onAction="#handleNuevo" text="Nuevo">
+            <HBox.margin>
+               <Insets right="20.0" />
+            </HBox.margin></Button>
+         <Button fx:id="handleEditar" mnemonicParsing="false" onAction="#handleEditar" text="Editar">
+            <HBox.margin>
+               <Insets right="20.0" />
+            </HBox.margin>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#onReload" text="Actualizar registro">
+            <HBox.margin>
+               <Insets right="20.0" />
+            </HBox.margin></Button>
          <Button mnemonicParsing="false" onAction="#onDelete" text="Eliminar">
             <HBox.margin>
-               <Insets />
+               <Insets right="20.0" />
             </HBox.margin></Button>
-         <Button mnemonicParsing="false" onAction="#onStatus" text="Cambiar Estatus" />
+         <Button mnemonicParsing="false" onAction="#onStatus" text="Cambiar Estatus">
+            <HBox.margin>
+               <Insets right="20.0" />
+            </HBox.margin></Button>
       </children>
       <padding>
          <Insets left="35.0" />

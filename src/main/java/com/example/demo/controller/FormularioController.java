@@ -30,37 +30,41 @@ public class FormularioController {
     @FXML
     private Label lblAlert;
 
-    //Boton para guardar el registro
+    private boolean esEdicion = false;
+    private Paciente pacienteAEditar;
+
+    public void prepararEdicion(Paciente seleccionado) {
+        this.esEdicion = true;
+        this.pacienteAEditar = seleccionado;
+        txtCurp.setText(seleccionado.getCurp());
+        txtNombre.setText(seleccionado.getNombre());
+        txtEdad.setText(String.valueOf(seleccionado.getEdad()));
+        txtTelefono.setText(seleccionado.getTelefono());
+        txtAlergias.setText(seleccionado.getAlergias());
+        txtCurp.setEditable(false);
+    }
+
     @FXML
     private void onSave(ActionEvent event) {
         if (validarDatos()) { // Este metodo comprueba los datos
-            Paciente nuevo = new Paciente(txtCurp.getText().trim(), txtNombre.getText().trim(),
-                    Integer.parseInt(txtEdad.getText().trim()), txtTelefono.getText().trim(), txtAlergias.getText().trim(),"Activo");
+            String curp = txtCurp.getText().trim();
+            String nombre = txtNombre.getText().trim();
+            String edad = txtEdad.getText().trim();
+            String telefono = txtTelefono.getText().trim();
+            String alergias = txtAlergias.getText().trim();
+            Paciente nuevo = new Paciente(curp,nombre,Integer.parseInt(edad),telefono,alergias,"Activo");
             try {
-                service.addPaciente(nuevo);
-                clear();
-                lblAlert.setText("Paciente registrado exitosamente");
+                service.addPaciente(nuevo, esEdicion);
+                lblAlert.setText("Paciente registrado con éxito");
                 lblAlert.setStyle("-fx-text-fill: green");
+                clear();
             } catch (IllegalArgumentException e) {
                 // Este es el mensaje de Curp duplicado (Ya esta establecido)
                 lblAlert.setText(e.getMessage());
                 lblAlert.setStyle("-fx-text-fill: red");
             } catch (IOException e) {
-                //Esto me lo recomendo el mismo intellij, no se pq pero sin el da error
                 throw new RuntimeException(e);
             }
-        }
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demo/hello-view.fxml"));
-            Parent root = loader.load();
-            Stage newStage = new Stage();
-            newStage.setScene(new Scene(root));
-            newStage.show();
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("Error al cargar la ventana: " + e.getMessage());
         }
     }
     @FXML
@@ -78,7 +82,6 @@ public class FormularioController {
             System.err.println("Error al cargar la ventana: " + e.getMessage());
         }
     }
-
 
     private boolean validarDatos() {
         String curp = txtCurp.getText().trim();

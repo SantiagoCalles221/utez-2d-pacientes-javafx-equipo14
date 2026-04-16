@@ -24,6 +24,7 @@ public class FileRepository {
     // Lee el archivo y devuelve una lista de Pacientes
     // Funciona solo porque dios asi lo quizo
     public List<Paciente> loadPacientes() throws IOException {
+
         List<String> lines = readAllLines();
         List<Paciente> lista = new ArrayList<>();
         for (String line : lines) {

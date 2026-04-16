@@ -52,8 +52,9 @@ public class appController {
     private void cargarDatos() {
         //Simples mensajes de si todo esta bien o exploto
         try {
-            contadorActivos();
             service.loadData();
+            tableView.setItems(service.getPacientes());
+            contadorActivos();
             tableView.setItems(service.getPacientes());
             lblAlert.setText("Datos cargados correctamente");
             lblAlert.setStyle("-fx-text-fill: green");
@@ -149,6 +150,32 @@ public class appController {
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Error al cargar la ventana: " + e.getMessage());
+        }
+    }
+    @FXML
+    private void handleEditar(ActionEvent event) {
+        Paciente seleccionado = tableView.getSelectionModel().getSelectedItem();
+
+        if (seleccionado != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demo/nuevo.fxml"));
+                Parent root = loader.load();
+                FormularioController dc = loader.getController();
+                dc.prepararEdicion(seleccionado);
+                Stage stage = new Stage();
+                stage.setTitle("Editar Paciente");
+                stage.setScene(new Scene(root));
+                stage.show();
+                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                currentStage.close();
+
+            } catch (IOException e) {
+                lblAlert.setText("Error al abrir el formulario de edición");
+                e.printStackTrace();
+            }
+        } else {
+            lblAlert.setText("Por favor, selecciona un paciente de la tabla");
+            lblAlert.setStyle("-fx-text-fill: orange");
         }
     }
 }
